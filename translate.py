@@ -17,6 +17,15 @@ def create_translation_function(target_language):
             
         try:
             result = GoogleTranslator(source='auto', target=target_language).translate(to_translate)
+            print(f"Original text : {to_translate}")
+            print(f"Translated text: {result}")
+            
+            # Truncate if longer than 255 characters
+            if len(result) > 255:
+                print(f"Warning: Translation exceeds 255 characters, truncating...")
+                result = result[:255]
+                print(f"Truncated text: {result}")
+            
             return result
         except Exception as e:
             print(f"Translation failed: {e}")
@@ -36,4 +45,4 @@ def translate_workspace(workspace_id: str, target_language: str):
 
 
 if __name__ == "__main__":
-    translate_workspace(workspace_id="demo", target_language="de-DE")
+    translate_workspace(workspace_id="be92f91a48ea40a2b92ea9a025033092", target_language="ja-JP")
